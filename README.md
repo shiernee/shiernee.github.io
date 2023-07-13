@@ -1,10 +1,1 @@
-<html>  
-<header>
-  <h1>shiernee.github.io</h1>
-  <p>Posted by John Doe</p>
-  <p>Some additional information here</p>
-</header>
-</html>  
-
-
-
+#header
