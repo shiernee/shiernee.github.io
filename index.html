@@ -3,10 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Website Title</title>
+    <title>Website with Tabs</title>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* Navigation bar styling */
+        .tabs {
+            display: flex;
+            background-color: #333;
+        }
+
+        .tabs button {
+            flex: 1;
+            padding: 14px;
+            text-align: center;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .tabs button:hover {
+            background-color: #575757;
+        }
+
+        .tabs button.active {
+            background-color: #4CAF50;
+        }
+
+        /* Tab content area styling */
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: white;
+            border-top: 1px solid #ccc;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        h1 {
+            color: #333;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to My Website!</h1>
-    <p>This is a basic website hosted on GitHub Pages.</p>
+
+    <!-- Tab navigation -->
+    <div class="tabs">
+        <button class="tab-link active" onclick="showTab('home')">Home</button>
+        <button class="tab-link" onclick="showTab('team')">Team Members</button>
+        <button class="tab-link" onclick="showTab('news')">News</button>
+    </div>
+
+    <!-- Tab contents -->
+    <div id="home" class="tab-content active">
+        <h1>Welcome to Our Homepage</h1>
+        <p>This is the homepage of our website. Here we can put some introductory content.</p>
+    </div>
+
+    <div id="team" class="tab-content">
+        <h1>Our Team</h1>
+        <p>Meet our amazing team members who make everything possible:</p>
+        <ul>
+            <li>John Doe - CEO</li>
+            <li>Jane Smith - CTO</li>
+            <li>Mary Johnson - Lead Developer</li>
+        </ul>
+    </div>
+
+    <div id="news" class="tab-content">
+        <h1>Latest News</h1>
+        <p>Here you can read the latest updates and news about our company:</p>
+        <ul>
+            <li>New project launch next month!</li>
+            <li>Team expansion with new hires.</li>
+            <li>Join us at the upcoming tech conference.</li>
+        </ul>
+    </div>
+
+    <script>
+        // Function to switch between tabs
+        function showTab(tabName) {
+            // Hide all tabs
+            const allTabs = document.querySelectorAll('.tab-content');
+            allTabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Deactivate all buttons
+            const allButtons = document.querySelectorAll('.tab-link');
+            allButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Show the selected tab
+            document.getElementById(tabName).classList.add('active');
+
+            // Activate the clicked button
+            const activeButton = document.querySelector(`button[onclick="showTab('${tabName}')"]`);
+            activeButton.classList.add('active');
+        }
+    </script>
+
 </body>
 </html>
