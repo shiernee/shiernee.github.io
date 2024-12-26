@@ -63,48 +63,43 @@
             color: #6a2e8f; /* Set title color to purple */
         }
 
-        /* Styling for the image and description under homepage */
-        .homepage-image {
+        /* Slideshow container styling */
+        .slideshow-container {
+            position: relative;
             max-width: 100%;
-            height: auto;
-            border-radius: 8px;
             margin: 20px 0;
         }
 
-        .homepage-text {
-            font-size: 18px;
-            color: #333;
-        }
-
-        /* Styling for the logo */
-        .logo {
-            max-width: 200px;
-            height: auto;
-            margin: 20px 0;
-        }
-
-        /* Styling for the Neoguard System link */
-        .neoguard-link {
-            font-size: 18px;
-            color: #6A3D8C;
-            text-decoration: none;
-        }
-
-        .neoguard-link:hover {
-            color: #5b2a6e;
-        }
-
-        /* Flexbox styling for two images side by side */
-        .neoguard-images {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-
-        .neoguard-images img {
-            width: 48%; /* Adjust the width to make sure images fit side by side */
+        .slideshow-container img {
+            width: 100%;
             height: auto;
             border-radius: 8px;
+        }
+
+        /* Next and previous buttons */
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 20px;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
         }
     </style>
 </head>
@@ -121,20 +116,29 @@
     <!-- Tab contents -->
     <div id="home" class="tab-content active">
         <h1>Welcome to HumanAI Lab</h1>
-                
-        <!-- Added image under homepage -->
-        <img src="home_img.png" alt="HumanAI Lab Image" class="homepage-image">
-        
-        <!-- Text after the image -->
+
+        <!-- Slideshow container -->
+        <div class="slideshow-container">
+            <img src="home_img.png" alt="Slide 1" class="slide active">
+            <img src="home_img2.jpg" alt="Slide 2" class="slide">
+            <img src="home_img3.jpg" alt="Slide 3" class="slide">
+            <img src="home_img4.png" alt="Slide 4" class="slide">
+            <img src="home_img5.jpg" alt="Slide 5" class="slide">
+
+            <!-- Navigation buttons -->
+            <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+            <button class="next" onclick="changeSlide(1)">&#10095;</button>
+        </div>
+
+        <!-- Text after the slideshow -->
         <div class="homepage-text">
             <p>Welcome to Human AI Lab. Our lab's vision is to transform and improve human health using Artificial Intelligence and Engineering.</p>
             <p>We are looking for students to perform groundbreaking research in AI to improve human health and I am looking for collaboration in our work.</p>
             <p>Do not hesitate to <a href="mailto:contact@humanailab.com">contact me</a> for more details.</p>
             <p><b>Research Interest</b>: Machine learning and Artificial Intelligence in Healthcare Diagnostics</p>
         </div>
-    </div>
 
-    <div id="people" class="tab-content">
+        <div id="people" class="tab-content">
         <h1>People</h1>
         <p>Meet our amazing team members who make everything possible:</p>
 
@@ -225,31 +229,27 @@
 <!--             <img src="neoguard2.png" alt="Neoguard Image 2"> -->
         </div>
   
+    
     </div>
 
+    <!-- JavaScript for slideshow -->
     <script>
-        // Function to switch between tabs
-        function showTab(tabName) {
-            // Hide all tabs
-            const allTabs = document.querySelectorAll('.tab-content');
-            allTabs.forEach(tab => {
-                tab.classList.remove('active');
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlides(index) {
+            slides.forEach((slide, i) => {
+                slide.style.display = i === index ? 'block' : 'none';
             });
-
-            // Deactivate all buttons
-            const allButtons = document.querySelectorAll('.tab-link');
-            allButtons.forEach(button => {
-                button.classList.remove('active');
-            });
-
-            // Show the selected tab
-            document.getElementById(tabName).classList.add('active');
-
-            // Activate the clicked button
-            const activeButton = document.querySelector(`button[onclick="showTab('${tabName}')"]`);
-            activeButton.classList.add('active');
         }
-    </script>
 
+        function changeSlide(direction) {
+            slideIndex = (slideIndex + direction + slides.length) % slides.length;
+            showSlides(slideIndex);
+        }
+
+        // Initialize the first slide
+        showSlides(slideIndex);
+    </script>
 </body>
 </html>
