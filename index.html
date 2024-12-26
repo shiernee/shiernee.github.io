@@ -92,19 +92,19 @@
             background-color: rgba(0, 0, 0, 0.5);
             color: white;
             border: none;
-            padding: 10px;
+            padding: 15px;
             cursor: pointer;
             border-radius: 50%;
-            font-size: 18px;
+            font-size: 24px;
             z-index: 10;
         }
 
         .prev {
-            left: 10px;
+            left: 15px;
         }
 
         .next {
-            right: 10px;
+            right: 15px;
         }
 
         .prev:hover, .next:hover {
@@ -292,6 +292,29 @@
 
         // Auto change slides every 3 seconds
         setInterval(() => changeSlide(1), 3000);
+
+         // Function to switch between tabs
+        function showTab(tabName) {
+            // Hide all tabs
+            const allTabs = document.querySelectorAll('.tab-content');
+            allTabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Deactivate all buttons
+            const allButtons = document.querySelectorAll('.tab-link');
+            allButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Show the selected tab
+            document.getElementById(tabName).classList.add('active');
+
+            // Activate the clicked button
+            const activeButton = document.querySelector(`button[onclick="showTab('${tabName}')"]`);
+            activeButton.classList.add('active');
+        }
+
     </script>
 </body>
 </html>
