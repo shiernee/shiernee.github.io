@@ -67,25 +67,71 @@
         .slideshow-container {
             position: relative;
             max-width: 100%;
-            margin: 20px 0;
-            height: 450px; /* Fixed height for slideshow */
+            margin: 20px auto;
+            height: 450px;
             overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .slideshow-container img {
-            width: auto;
-            height: 450px; /* Ensure all images fit to this height */
-            border-radius: 8px;
+            max-height: 450px;
             display: none;
-            object-fit: cover; /* Ensure the image covers the area while maintaining aspect ratio */
         }
 
         .slideshow-container img.active {
             display: block;
         }
+
+        /* Navigation buttons */
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 18px;
+            z-index: 10;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Dots for indicators */
+        .dots {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .dots .dot {
+            height: 12px;
+            width: 12px;
+            margin: 5px;
+            background-color: #ccc;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .dots .dot.active {
+            background-color: #6a2e8f;
+        }
     </style>
 </head>
-    
 <body>
 
     <!-- Tab navigation -->
@@ -102,11 +148,22 @@
 
         <!-- Slideshow container -->
         <div class="slideshow-container">
+            <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
             <img src="home_img.png" alt="Slide 1" class="slide active">
             <img src="home_img2.jpg" alt="Slide 2" class="slide">
             <img src="home_img3.jpg" alt="Slide 3" class="slide">
             <img src="home_img4.png" alt="Slide 4" class="slide">
             <img src="home_img5.jpg" alt="Slide 5" class="slide">
+            <button class="next" onclick="changeSlide(1)">&#10095;</button>
+        </div>
+
+        <!-- Dots for navigation -->
+        <div class="dots">
+            <span class="dot active" onclick="currentSlide(0)"></span>
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
         </div>
 
         <!-- Text after the slideshow -->
@@ -207,28 +264,34 @@
         <div class="neoguard-images">
             <img src="neoguard1.png" alt="Neoguard Image 1">
 <!--             <img src="neoguard2.png" alt="Neoguard Image 2"> -->
-    </div>
+        </div>
   
+    </div>
+
     <!-- JavaScript for slideshow -->
     <script>
         let slideIndex = 0;
         const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
 
-        function showSlides() {
-            slides.forEach((slide, index) => {
-                slide.classList.remove('active');
-                if (index === slideIndex) {
-                    slide.classList.add('active');
-                }
+        function showSlides(index) {
+            slideIndex = (index + slides.length) % slides.length; // Ensure the index is within bounds
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === slideIndex);
+                dots[i].classList.toggle('active', i === slideIndex);
             });
-            slideIndex = (slideIndex + 1) % slides.length;
         }
 
-        // Automatically change slides every 0.5 seconds
-        setInterval(showSlides, 3000);
+        function changeSlide(direction) {
+            showSlides(slideIndex + direction);
+        }
 
-        // Initial display of the first slide
-        showSlides();
+        function currentSlide(index) {
+            showSlides(index);
+        }
+
+        // Auto change slides every 3 seconds
+        setInterval(() => changeSlide(1), 3000);
     </script>
 </body>
 </html>
