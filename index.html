@@ -270,6 +270,33 @@
 
     <!-- JavaScript for slideshow -->
     <script>
+        const tabLinks = document.querySelectorAll('.tab-link');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        function showTab(tabName) {
+            // Update active tab button
+            tabLinks.forEach(link => link.classList.remove('active'));
+            document.querySelector(`button[onclick="showTab('${tabName}')"]`).classList.add('active');
+
+            // Update active tab content
+            tabContents.forEach(content => content.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+
+            // Update URL without reloading the page
+            window.history.pushState(null, '', `/${tabName}`);
+        }
+
+         // Handle browser back/forward button
+        window.addEventListener('popstate', () => {
+            const currentTab = window.location.pathname.substring(1) || 'home'; // Default to 'home'
+            showTab(currentTab);
+        });
+
+        // Set initial tab based on URL
+        const initialTab = window.location.pathname.substring(1) || 'home'; // Default to 'home'
+        showTab(initialTab);
+
+        
         let slideIndex = 0;
         const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.dot');
@@ -292,28 +319,7 @@
 
         // Auto change slides every 3 seconds
         setInterval(() => changeSlide(1), 3000);
-
-         // Function to switch between tabs
-        function showTab(tabName) {
-            // Hide all tabs
-            const allTabs = document.querySelectorAll('.tab-content');
-            allTabs.forEach(tab => {
-                tab.classList.remove('active');
-            });
-
-            // Deactivate all buttons
-            const allButtons = document.querySelectorAll('.tab-link');
-            allButtons.forEach(button => {
-                button.classList.remove('active');
-            });
-
-            // Show the selected tab
-            document.getElementById(tabName).classList.add('active');
-
-            // Activate the clicked button
-            const activeButton = document.querySelector(`button[onclick="showTab('${tabName}')"]`);
-            activeButton.classList.add('active');
-        }
+        
 
     </script>
 </body>
