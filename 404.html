@@ -247,31 +247,29 @@
          <ul>
             <li>Afrina Matrol - PhD Student</li>
             <li>Li Mengqiang - PhD Student</li>
+            <li>Deng Jiaxuan - PhD Student</li>
             <li>Maharaj Faawwaz - Master Student </li>
-            <li>Deng Jiaxuan - Master Student</li>
             <li>Chong Kai Yang - Master Student</li>
             <li>Tham Weng Wai- Master Student</li>
             <li>Lu Xianze - Researcher</li>
-            <li>Maximillian Niklas - Researcher</li>    
-            <li>Lim Jia Yu - Undergraduate Student</li>    
+           
          </ul>
 
         
         <h2>Alumni</h2>
          <ul>
-            <li>Yang Sze Jue</a></li>
-            <li>Darren Sow Zhu Jian</li>
-            <li>Tengku Naim </li>
+            <li>Yang Sze Jue: YTL Lab </a></li>
+            <li>Darren Sow Zhu Jian: PayNet</li>
+            <li>Tengku Naim</li>
             <li>Zyad Zarin</li>
-            <li>Lim Mei Cee</li>
-            <li>Ng Chuan Nyen</li>
-            <li>Sim Lin Zheng</li>
-            <li>Yin Khar Shin</li>            
+            <li>Yin Khar Shin: Accenture</li>
+            <li>Maximillian Niklas</li>    
+            <li>Lim Jia Yu</li>    
          </ul>
 
     </div>
 
-     <div id="news" class="tab-content">
+    <div id="news" class="tab-content">
         <h1>Latest News</h1>
         <b>2025 </b><br><br>
         <b>20.</b> Congratulations to Jiaxuan for her abstract being selected as Top Ten Abstracts in the AI Health Summit, Singapore. <br><br>
@@ -333,17 +331,14 @@
         function showTab(tabName) {
             // Update active tab button
             tabLinks.forEach(link => link.classList.remove('active'));
-            const activeTab = document.querySelector(`button[onclick="showTab('${tabName}')"]`);
-            if (activeTab) activeTab.classList.add('active');
-    
+            document.querySelector(`button[onclick="showTab('${tabName}')"]`).classList.add('active');
+
             // Update active tab content
             tabContents.forEach(content => content.classList.remove('active'));
-            const activeContent = document.getElementById(tabName);
-            if (activeContent) activeContent.classList.add('active');
-    
+            document.getElementById(tabName).classList.add('active');
+
             // Update URL without reloading the page
             window.history.pushState(null, '', `/${tabName}`);
-
         }
 
          // Handle browser back/forward button
