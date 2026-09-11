@@ -1,0 +1,26 @@
+name: Sync Google Scholar Publications
+
+on:
+  schedule:
+    - cron: '0 0 * * 0' # Runs every Sunday at midnight
+  workflow_dispatch: # Allows manual trigger
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Fetch Google Scholar Records
+        uses: sxlllslgh/google-scholar-fetcher@v1
+        with:
+          google-scholar-id: 'OMAinzgAAAAJ'
+          record-file: 'publications.json'
+          
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "Scholar Sync Bot"
+          git config --global user.email "bot@github.com"
+          git add publications.json
+          git commit -m "Auto-update Google Scholar publications" || exit 0
+          git push
