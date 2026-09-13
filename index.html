@@ -176,6 +176,77 @@
             }
         }
 
+        /* Research Split Layout Styling */
+        .research-container {
+            display: flex;
+            gap: 20px;
+            min-height: 400px;
+        }
+        
+        .research-sidebar {
+            width: 30%;
+            border-right: 2px solid #6a2e8f;
+            padding-right: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .research-item-btn {
+            padding: 12px 15px;
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-left: 4px solid transparent;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 15px;
+            font-weight: bold;
+            color: #333;
+            transition: all 0.2s ease;
+        }
+        
+        .research-item-btn:hover {
+            background-color: #e9e9e9;
+        }
+        
+        .research-item-btn.active {
+            background-color: #f0e6f6;
+            border-left: 4px solid #6a2e8f;
+            color: #6a2e8f;
+        }
+        
+        .research-detail-panel {
+            width: 70%;
+            padding-left: 10px;
+        }
+        
+        .project-detail {
+            display: none;
+        }
+        
+        .project-detail.active {
+            display: block;
+        }
+        
+        /* Responsive adjustment for small screens */
+        @media (max-width: 768px) {
+            .research-container {
+                flex-direction: column;
+            }
+            .research-sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 2px solid #6a2e8f;
+                padding-right: 0;
+                padding-bottom: 15px;
+            }
+            .research-detail-panel {
+                width: 100%;
+                padding-left: 0;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -184,7 +255,7 @@
     <div class="tabs">
         <button class="tab-link active" onclick="showTab('home')">Home</button>
         <button class="tab-link" onclick="showTab('people')">People</button>
-        <button class="tab-link" onclick="showTab('people')">Research</button>
+        <button class="tab-link" onclick="showTab('research')">Research</button>
         <button class="tab-link" onclick="showTab('news')">News</button>
         <button class="tab-link" onclick="showTab('neoguard')">NeoGuard</button>
     </div>
@@ -268,7 +339,41 @@
     </div>
 
     <div id="research" class="tab-content">
-
+        <h1>Research Projects</h1>
+        
+        <div class="research-container">
+            <!-- Left Sidebar: Project Buttons -->
+            <div class="research-sidebar">
+                <button class="research-item-btn active" onclick="showProject('project1')">
+                    Small-for-Gestational-Age (SGA) AI
+                </button>
+                <button class="research-item-btn" onclick="showProject('project2')">
+                    Multimodal Clinical AI & Vision
+                </button>
+                <button class="research-item-btn" onclick="showProject('project3')">
+                    Abdominal Aortic Aneurysm AI
+                </button>
+            </div>
+    
+            <!-- Right Side: Project Details -->
+            <div class="research-detail-panel">
+                <div id="project1" class="project-detail active">
+                    <h2>Early Detection of SGA Infants</h2>
+                    <p><b>Focus:</b> Developing trustworthy machine learning models for early prediction of Small-for-Gestational-Age (SGA) infants using nuchal thickness and estimated fetal weight.</p>
+                    <p><b>Grants:</b> Dr Ranjeet Bhagwan Singh (RBS) Research Grant, MOSTI Grant.</p>
+                </div>
+    
+                <div id="project2" class="project-detail">
+                    <h2>Multimodal Clinical AI & Medical Imaging</h2>
+                    <p><b>Focus:</b> Integrating multi-modal healthcare datasets (clinical parameters, 3D optoacoustic imaging, elastography) into clinically deployable AI systems.</p>
+                </div>
+    
+                <div id="project3" class="project-detail">
+                    <h2>Abdominal Aortic Aneurysm Prediction</h2>
+                    <p><b>Focus:</b> Machine learning applications in vascular health to predict aneurysm progression and size development.</p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div id="news" class="tab-content">
@@ -379,6 +484,22 @@
 
         // Auto change slides every 3 seconds
         setInterval(() => changeSlide(1), 5000);
+
+        function showProject(projectId) {
+            // Remove active class from all project buttons
+            document.querySelectorAll('.research-item-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+        
+            // Hide all project details
+            document.querySelectorAll('.project-detail').forEach(detail => {
+                detail.classList.remove('active');
+            });
+        
+            // Activate selected button and content panel
+            event.currentTarget.classList.add('active');
+            document.getElementById(projectId).classList.add('active');
+        }
         
 
     </script>
