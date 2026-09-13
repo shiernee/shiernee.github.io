@@ -176,76 +176,40 @@
             }
         }
 
-        /* Research Split Layout Styling */
-        .research-container {
-            display: flex;
-            gap: 20px;
-            min-height: 400px;
-        }
-        
-        .research-sidebar {
-            width: 30%;
-            border-right: 2px solid #6a2e8f;
-            padding-right: 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        
-        .research-item-btn {
-            padding: 12px 15px;
-            background-color: #f4f4f4;
-            border: 1px solid #ddd;
-            border-left: 4px solid transparent;
-            border-radius: 4px;
-            cursor: pointer;
-            text-align: left;
-            font-size: 15px;
-            font-weight: bold;
-            color: #333;
-            transition: all 0.2s ease;
-        }
-        
-        .research-item-btn:hover {
-            background-color: #e9e9e9;
-        }
-        
-        .research-item-btn.active {
-            background-color: #f0e6f6;
-            border-left: 4px solid #6a2e8f;
-            color: #6a2e8f;
-        }
-        
-        .research-detail-panel {
-            width: 70%;
-            padding-left: 10px;
-        }
-        
-        .project-detail {
-            display: none;
-        }
-        
-        .project-detail.active {
-            display: block;
-        }
-        
-        /* Responsive adjustment for small screens */
-        @media (max-width: 768px) {
-            .research-container {
-                flex-direction: column;
-            }
-            .research-sidebar {
-                width: 100%;
-                border-right: none;
-                border-bottom: 2px solid #6a2e8f;
-                padding-right: 0;
-                padding-bottom: 15px;
-            }
-            .research-detail-panel {
-                width: 100%;
-                padding-left: 0;
-            }
-        }
+        /* Research programme cards */
+        #research { --r-purple:#6a2e8f; --r-ink:#28163a; --r-muted:#6d6178; --r-line:#e7dfee; background:#f7f5f9; padding:54px clamp(18px,4vw,54px) 70px; }
+        .research-header { max-width:900px; margin:0 auto 34px; text-align:center; }
+        .research-eyebrow { margin:0 0 8px; color:var(--r-purple); font-size:.75rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; }
+        #research .research-title { margin:0; color:var(--r-ink); font-family:Georgia,serif; font-size:clamp(2rem,4vw,3.5rem); line-height:1.08; }
+        .research-intro { max-width:820px; margin:18px auto 0; color:var(--r-muted); font-size:1.02rem; line-height:1.7; }
+        .research-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px; max-width:1480px; margin:0 auto; align-items:stretch; }
+        .research-card { display:flex; min-width:0; flex-direction:column; overflow:hidden; background:#fff; border:1px solid var(--r-line); border-radius:17px; box-shadow:0 12px 35px rgba(54,25,72,.07); transition:transform .25s ease,box-shadow .25s ease; }
+        .research-card:hover { transform:translateY(-5px); box-shadow:0 18px 42px rgba(54,25,72,.14); }
+        .research-visual { height:175px; padding:16px; background:linear-gradient(145deg,#f1e6f7,#f7fbfb); border-bottom:1px solid var(--r-line); }
+        .research-visual svg { width:100%; height:100%; }
+        .research-body { display:flex; flex:1; flex-direction:column; padding:23px 22px 21px; }
+        .research-number { color:#2d8f91; font-size:.69rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
+        .research-flag { display:inline-block; margin-left:5px; padding:3px 7px; border-radius:999px; background:#f2e5fa; color:var(--r-purple); letter-spacing:.06em; }
+        #research .research-card h2 { min-height:70px; margin:10px 0 11px; color:var(--r-ink); font-family:Georgia,serif; font-size:1.43rem; line-height:1.18; }
+        .research-lead { margin:0 0 17px; color:var(--r-muted); font-size:.9rem; }
+        .research-stats { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-bottom:17px; }
+        .research-stat { padding:9px; border-radius:9px; background:#f8f3fb; }
+        .research-stat strong { display:block; color:var(--r-purple); font-size:1.03rem; }
+        .research-stat span { color:var(--r-muted); font-size:.68rem; }
+        .research-card h3 { margin:1px 0 7px; color:var(--r-ink); font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; }
+        .research-card ul { margin:0 0 18px; padding-left:17px; color:#51445e; font-size:.82rem; }
+        .research-card li + li { margin-top:4px; }
+        .research-paper { margin-top:auto; padding-top:14px; border-top:1px solid var(--r-line); }
+        .research-paper p { margin:0 0 9px; color:var(--r-muted); font-size:.74rem; }
+        .research-link { color:var(--r-purple); font-size:.78rem; font-weight:700; text-decoration:none; }
+        .research-link:hover { text-decoration:underline; }
+        .research-publications { display:grid; gap:7px; margin-top:10px; }
+        .research-publications a { display:flex; align-items:flex-start; gap:7px; padding:8px 10px; color:var(--r-purple); background:#f8f3fb; border:1px solid #eadff0; border-radius:8px; font-size:.73rem; font-weight:700; line-height:1.35; text-decoration:none; }
+        .research-publications a::before { content:"↗"; flex:0 0 auto; }
+        .research-publications a:hover { background:#f0e4f5; border-color:#cfb6db; }
+        .research-note { max-width:1480px; margin:22px auto 0; color:#84778e; font-size:.73rem; }
+        @media (max-width:1150px) { .research-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } #research .research-card h2 { min-height:auto; } }
+        @media (max-width:650px) { #research { padding:42px 16px 56px; } .research-grid { grid-template-columns:1fr; } .research-visual { height:205px; } }
 
     </style>
 </head>
@@ -287,6 +251,7 @@
             <span class="dot" onclick="currentSlide(4)"></span>
             <span class="dot" onclick="currentSlide(5)"></span>
             <span class="dot" onclick="currentSlide(6)"></span>
+            <span class="dot" onclick="currentSlide(7)"></span>
         </div>
 
         <!-- Text after the slideshow -->
@@ -339,41 +304,99 @@
     </div>
 
     <div id="research" class="tab-content">
-        <h1>Research Projects</h1>
-        
-        <div class="research-container">
-            <!-- Left Sidebar: Project Buttons -->
-            <div class="research-sidebar">
-                <button class="research-item-btn active" onclick="showProject('project1')">
-                    Small-for-Gestational-Age (SGA) AI
-                </button>
-                <button class="research-item-btn" onclick="showProject('project2')">
-                    Multimodal Clinical AI & Vision
-                </button>
-                <button class="research-item-btn" onclick="showProject('project3')">
-                    Abdominal Aortic Aneurysm AI
-                </button>
-            </div>
-    
-            <!-- Right Side: Project Details -->
-            <div class="research-detail-panel">
-                <div id="project1" class="project-detail active">
-                    <h2>Early Detection of SGA Infants</h2>
-                    <p><b>Focus:</b> Developing trustworthy machine learning models for early prediction of Small-for-Gestational-Age (SGA) infants using nuchal thickness and estimated fetal weight.</p>
-                    <p><b>Grants:</b> Dr Ranjeet Bhagwan Singh (RBS) Research Grant, MOSTI Grant.</p>
+        <header class="research-header">
+            <p class="research-eyebrow">Featured Research Programmes</p>
+            <h1 class="research-title">Building clinical AI that works beyond the laboratory.</h1>
+            <p class="research-intro">My lab's research focuses on developing multimodal, trustworthy and clinically deployable AI, with a flagship focus on maternal and fetal health. We combine medical imaging, clinical data and physiological signals to build systems that are interpretable, generalisable and useful in real clinical practice.</p>
+        </header>
+
+        <section class="research-grid" aria-label="Research programmes">
+            <article class="research-card">
+                <div class="research-visual">
+                    <svg viewBox="0 0 300 150" role="img" aria-label="Comparison of fetal growth-chart sensitivity">
+                        <text x="12" y="18" fill="#6d6178" font-size="10">SGA detection sensitivity</text><line x1="18" y1="124" x2="288" y2="124" stroke="#cabcd3"/>
+                        <rect x="34" y="48" width="50" height="76" rx="5" fill="#6a2e8f"/><rect x="124" y="55" width="50" height="69" rx="5" fill="#9b51b8"/><rect x="214" y="90" width="50" height="34" rx="5" fill="#cfb6db"/>
+                        <g fill="#28163a" font-size="12" font-weight="700" text-anchor="middle"><text x="59" y="42">42%</text><text x="149" y="49">38%</text><text x="239" y="84">19%</text></g>
+                        <g fill="#6d6178" font-size="9" text-anchor="middle"><text x="59" y="139">Malaysia</text><text x="149" y="139">Hadlock</text><text x="239" y="139">INTERGROWTH</text></g>
+                    </svg>
                 </div>
-    
-                <div id="project2" class="project-detail">
-                    <h2>Multimodal Clinical AI & Medical Imaging</h2>
-                    <p><b>Focus:</b> Integrating multi-modal healthcare datasets (clinical parameters, 3D optoacoustic imaging, elastography) into clinically deployable AI systems.</p>
+                <div class="research-body">
+                    <div class="research-number">Programme 01 <span class="research-flag">Flagship</span></div><h2>AI for Maternal &amp; Fetal Health</h2>
+                    <p class="research-lead">Earlier identification and individualised monitoring of small-for-gestational-age births and fetal growth restriction.</p>
+                    <div class="research-stats"><div class="research-stat"><strong>68,897</strong><span>ultrasound scans</span></div><div class="research-stat"><strong>5,519</strong><span>pregnancies studied</span></div></div>
+                    <h3>Research focus</h3><ul><li>Multimodal SGA/FGR risk prediction</li><li>Fetal growth trajectories</li><li>Ultrasound and placental biomarkers</li><li>Cross-country clinical validation</li></ul>
+                    <div class="research-paper"><p><strong>Explore publications</strong></p><div class="research-publications">
+                        <a href="https://obgyn.onlinelibrary.wiley.com/doi/10.1002/pd.6748" target="_blank" rel="noopener">Multi-country validation of SGA prediction</a>
+                        <a href="https://www.frontiersin.org/journals/surgery/articles/10.3389/fsurg.2023.1123948/full" target="_blank" rel="noopener">Fetal growth charts for detecting SGA</a>
+                        <a href="https://www.nature.com/articles/s41598-022-07883-0" target="_blank" rel="noopener">Nuchal fold and FGR prediction</a>
+                        <a href="https://obgyn.onlinelibrary.wiley.com/doi/full/10.1002/pd.5903" target="_blank" rel="noopener">Machine learning for early SGA prediction</a>
+                    </div></div>
                 </div>
-    
-                <div id="project3" class="project-detail">
-                    <h2>Abdominal Aortic Aneurysm Prediction</h2>
-                    <p><b>Focus:</b> Machine learning applications in vascular health to predict aneurysm progression and size development.</p>
+            </article>
+
+            <article class="research-card">
+                <div class="research-visual">
+                    <svg viewBox="0 0 300 150" role="img" aria-label="Multimodal clinical data integration">
+                        <g fill="#fff" stroke="#a877bf"><rect x="12" y="15" width="82" height="34" rx="8"/><rect x="12" y="58" width="82" height="34" rx="8"/><rect x="12" y="101" width="82" height="34" rx="8"/></g>
+                        <g fill="#51445e" font-size="10" text-anchor="middle"><text x="53" y="36">Medical images</text><text x="53" y="79">Clinical records</text><text x="53" y="122">Signals + labs</text></g>
+                        <g stroke="#a877bf" stroke-width="2"><path d="M94 32L133 64"/><path d="M94 75L133 75"/><path d="M94 118L133 86"/></g><rect x="133" y="52" width="78" height="46" rx="12" fill="#6a2e8f"/><text x="172" y="72" fill="white" font-size="10" text-anchor="middle">Multimodal</text><text x="172" y="86" fill="white" font-size="10" text-anchor="middle">AI</text><path d="M211 75H239" stroke="#6a2e8f" stroke-width="2"/><rect x="239" y="53" width="52" height="44" rx="9" fill="#e9dcef"/><text x="265" y="72" fill="#28163a" font-size="9" text-anchor="middle">Clinical</text><text x="265" y="84" fill="#28163a" font-size="9" text-anchor="middle">decision</text>
+                    </svg>
                 </div>
-            </div>
-        </div>
+                <div class="research-body">
+                    <div class="research-number">Programme 02</div><h2>Multimodal Clinical Intelligence</h2>
+                    <p class="research-lead">Connecting images, records, biomarkers and physiological signals to model patient risk and disease progression.</p>
+                    <div class="research-stats"><div class="research-stat"><strong>1,452</strong><span>cardiac signals</span></div><div class="research-stat"><strong>81%</strong><span>CNN–LSTM accuracy</span></div></div>
+                    <h3>Research focus</h3><ul><li>Dengue severity prognostication</li><li>Image, tabular and text integration</li><li>Longitudinal patient modelling</li><li>Clinical foundation models</li></ul>
+                    <div class="research-paper"><p><strong>Explore publication</strong></p><div class="research-publications">
+                        <a href="https://ieeexplore.ieee.org/abstract/document/11457750" target="_blank" rel="noopener">Multimodal clinical AI research</a>
+                    </div></div>
+                </div>
+            </article>
+
+            <article class="research-card">
+                <div class="research-visual">
+                    <svg viewBox="0 0 300 150" role="img" aria-label="Trustworthy clinical AI framework">
+                        <circle cx="150" cy="75" r="35" fill="#6a2e8f"/><text x="150" y="70" fill="#fff" font-size="10" text-anchor="middle">Clinical</text><text x="150" y="84" fill="#fff" font-size="10" text-anchor="middle">trust</text>
+                        <g fill="#f0e4f5" stroke="#a877bf"><rect x="12" y="18" width="82" height="30" rx="8"/><rect x="206" y="18" width="82" height="30" rx="8"/><rect x="12" y="102" width="82" height="30" rx="8"/><rect x="206" y="102" width="82" height="30" rx="8"/></g>
+                        <g fill="#51445e" font-size="9" text-anchor="middle"><text x="53" y="37">Calibration</text><text x="247" y="37">Explanation</text><text x="53" y="121">Fairness</text><text x="247" y="121">Validation</text></g>
+                        <g stroke="#a877bf"><path d="M94 42L122 58"/><path d="M206 42L178 58"/><path d="M94 108L122 92"/><path d="M206 108L178 92"/></g>
+                    </svg>
+                </div>
+                <div class="research-body">
+                    <div class="research-number">Programme 03</div><h2>Trustworthy &amp; Deployable Clinical AI</h2>
+                    <p class="research-lead">Moving beyond model accuracy toward transparent, safe and generalisable AI for clinical use.</p>
+                    <div class="research-stats"><div class="research-stat"><strong>Multi-site</strong><span>external validation</span></div><div class="research-stat"><strong>TrustGuard</strong><span>flagship initiative</span></div></div>
+                    <h3>Research focus</h3><ul><li>Concept-based explanations</li><li>Calibration and uncertainty</li><li>Fairness and subgroup evaluation</li><li>Workflow and prospective evaluation</li></ul>
+                    <div class="research-paper"><p><strong>Explore publications</strong></p><div class="research-publications">
+                        <a href="https://www.sciencedirect.com/science/article/abs/pii/S0720048X24006004" target="_blank" rel="noopener">Explainable AI in medical imaging</a>
+                        <a href="https://www.sciencedirect.com/science/article/abs/pii/S1120179722019962" target="_blank" rel="noopener">Challenges of deploying AI in clinics</a>
+                    </div></div>
+                </div>
+            </article>
+
+            <article class="research-card">
+                <div class="research-visual">
+                    <svg viewBox="0 0 300 150" role="img" aria-label="Medical image analysis from image to segmentation">
+                        <defs><pattern id="research-cells" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="5" cy="7" r="4" fill="#c485a7" opacity=".7"/><circle cx="14" cy="13" r="3" fill="#8060a1" opacity=".6"/></pattern></defs>
+                        <rect x="12" y="24" width="92" height="100" rx="10" fill="#ead3df"/><rect x="12" y="24" width="92" height="100" rx="10" fill="url(#research-cells)"/><path d="M113 74H145" stroke="#6a2e8f" stroke-width="2"/><path d="M138 67L146 74L138 81" fill="none" stroke="#6a2e8f" stroke-width="2"/>
+                        <rect x="154" y="24" width="134" height="100" rx="10" fill="#eee5f2"/><path d="M177 101C164 80 180 48 206 44C237 39 270 59 267 88C264 114 240 119 216 111C198 105 189 119 177 101Z" fill="#6a2e8f" opacity=".75"/><path d="M188 88C185 70 201 56 220 56C241 56 254 69 252 86C250 102 232 108 216 102C202 97 192 105 188 88Z" fill="none" stroke="#fff" stroke-width="3"/>
+                    </svg>
+                </div>
+                <div class="research-body">
+                    <div class="research-number">Programme 04</div><h2>Medical Computer Vision &amp; Imaging</h2>
+                    <p class="research-lead">Detecting, segmenting and quantifying clinically meaningful structures across medical imaging modalities.</p>
+                    <div class="research-stats"><div class="research-stat"><strong>93.5%</strong><span>classification accuracy</span></div><div class="research-stat"><strong>95.9%</strong><span>F1-score</span></div></div>
+                    <h3>Research focus</h3><ul><li>Fetal ultrasound segmentation</li><li>Computational pathology</li><li>Retinal vessel segmentation</li><li>Vision–language medical models</li></ul>
+                    <div class="research-paper"><p><strong>Explore publications</strong></p><div class="research-publications">
+                        <a href="https://www.nature.com/articles/s41597-026-06998-7" target="_blank" rel="noopener">MeMoSA multi-country oral-image dataset</a>
+                        <a href="https://ieeexplore.ieee.org/abstract/document/10705681/" target="_blank" rel="noopener">Medical image segmentation research</a>
+                        <a href="https://www.sciencedirect.com/science/article/abs/pii/S0301562925003746" target="_blank" rel="noopener">Medical ultrasound imaging research</a>
+                        <a href="https://www.sciencedirect.com/science/article/abs/pii/S1746809426006051" target="_blank" rel="noopener">Synthetic imaging for diabetic-retinopathy grading</a>
+                    </div></div>
+                </div>
+            </article>
+        </section>
+        <p class="research-note">Metrics are drawn from the cited publications. Visuals are original summaries created for this research portfolio.</p>
     </div>
 
     <div id="news" class="tab-content">
@@ -484,22 +507,6 @@
 
         // Auto change slides every 3 seconds
         setInterval(() => changeSlide(1), 5000);
-
-        function showProject(projectId) {
-            // Remove active class from all project buttons
-            document.querySelectorAll('.research-item-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-        
-            // Hide all project details
-            document.querySelectorAll('.project-detail').forEach(detail => {
-                detail.classList.remove('active');
-            });
-        
-            // Activate selected button and content panel
-            event.currentTarget.classList.add('active');
-            document.getElementById(projectId).classList.add('active');
-        }
         
 
     </script>
